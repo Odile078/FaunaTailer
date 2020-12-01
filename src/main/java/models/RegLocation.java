@@ -2,6 +2,7 @@ package models;
 
 import org.sql2o.Connection;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,7 +24,7 @@ public class RegLocation {
 
     public void save(){
         try (Connection con=DB.sql2o.open()){
-            String sql="INSERT INTO locations (name) VALUES (:name)";
+            String sql="INSERT INTO reglocations (name) VALUES (:name)";
             if(name.equals("")){
                 throw new IllegalArgumentException("fill all fields");
             }
@@ -35,7 +36,7 @@ public class RegLocation {
     }
     public static RegLocation find(int id){
         try (Connection con=DB.sql2o.open()){
-            String sql="SELECT * FROM locations WHERE id=:id";
+            String sql="SELECT * FROM reglocations WHERE id=:id";
             return con.createQuery(sql)
                     .addParameter("id",id)
                     .throwOnMappingFailure(false)
@@ -45,7 +46,7 @@ public class RegLocation {
     }
     public static List<RegLocation> all(){
         try (Connection con=DB.sql2o.open()){
-            String sql="SELECT * FROM locations";
+            String sql="SELECT * FROM reglocations";
             return con.createQuery(sql)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(RegLocation.class);
@@ -66,20 +67,20 @@ public class RegLocation {
     public int hashCode() {
         return Objects.hash(id, name);
     }
-    /*
-    public List<Sighting> getLocationSightings(){
+
+    public List<RegSighting> getLocationSightings(){
         try (Connection con=DB.sql2o.open()){
-            String sql="SELECT sighting_id FROM locations_sightings WHERE location_id=:location_id";
+            String sql="SELECT regsighting_id FROM reglocations_sightings WHERE reglocation_id=:reglocation_id";
             List<Integer> sightings_ids=con.createQuery(sql)
-                    .addParameter("location_id",this.getId())
+                    .addParameter("reglocation_id",this.getId())
                     .executeAndFetch(Integer.class);
-            List<Sighting> sightings=new ArrayList<Sighting>();
+            List<RegSighting> sightings=new ArrayList<RegSighting>();
 
             for(Integer sighting_id:sightings_ids){
-                String sightingsQuery="SELECT * FROM sightings WHERE id=:sighting_id";
-                Sighting sighting=con.createQuery(sightingsQuery)
-                        .addParameter("sighting_id",sighting_id)
-                        .executeAndFetchFirst(Sighting.class);
+                String sightingsQuery="SELECT * FROM regsightings WHERE id=:regsighting_id";
+                RegSighting sighting=con.createQuery(sightingsQuery)
+                        .addParameter("regsighting_id",sighting_id)
+                        .executeAndFetchFirst(RegSighting.class);
                 sightings.add(sighting);
 
             }
@@ -92,11 +93,11 @@ public class RegLocation {
         }
 
     }
-    * */
+
 
     public void delete(){
         try (Connection con=DB.sql2o.open()){
-            String sql="DELETE FROM locations WHERE id=:id";
+            String sql="DELETE FROM reglocations WHERE id=:id";
             con.createQuery(sql)
                     .addParameter("id",this.id)
                     .executeUpdate();

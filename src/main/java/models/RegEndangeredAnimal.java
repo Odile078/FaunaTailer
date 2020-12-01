@@ -38,7 +38,7 @@ public class RegEndangeredAnimal extends RegAnimal implements DatabaseManagement
         try (Connection con=DB.sql2o.open()){
 
 
-            String sql ="INSERT INTO animals (name,type,health,age) VALUES (:name,:type,:health,:age)";
+            String sql ="INSERT INTO reganimals (name,type,health,age) VALUES (:name,:type,:health,:age)";
 
             this.id=(int) con.createQuery(sql,true)
                     .addParameter("name",this.name)

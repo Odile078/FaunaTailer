@@ -3,6 +3,7 @@ package models;
 
 import org.sql2o.Connection;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,7 +37,7 @@ public class RegRanger {
 
     public void save(){
         try (Connection con=DB.sql2o.open()){
-            String sql="INSERT INTO rangers (name,badge_id,phone) VALUES (:name,:badge_id,:phone)";
+            String sql="INSERT INTO regrangers (name,badge_id,phone) VALUES (:name,:badge_id,:phone)";
             if(name.equals("")||badge_id.equals("")||phone.equals("")){
                 throw new IllegalArgumentException("fill all fields");
             }
@@ -51,7 +52,7 @@ public class RegRanger {
 
     public static RegRanger find(int id){
         try (Connection con=DB.sql2o.open()){
-            String sql="SELECT * FROM rangers WHERE id=:id";
+            String sql="SELECT * FROM regrangers WHERE id=:id";
             return con.createQuery(sql)
                     .addParameter("id",id)
                     .executeAndFetchFirst(RegRanger.class);
@@ -60,7 +61,7 @@ public class RegRanger {
     }
     public static List<RegRanger> all(){
         try (Connection con=DB.sql2o.open()){
-            String sql="SELECT * FROM rangers";
+            String sql="SELECT * FROM regrangers";
             return con.createQuery(sql)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(RegRanger.class);
@@ -70,7 +71,7 @@ public class RegRanger {
     }
     public void update(int id,String name,String phone){
         try (Connection con=DB.sql2o.open()){
-            String sql="UPDATE rangers SET name=:name,phone=:phone WHERE id=:id";
+            String sql="UPDATE regrangers SET name=:name,phone=:phone WHERE id=:id";
             if(name.equals("")||phone.equals("")){
                 throw new IllegalArgumentException("fill all the fields");
             }
@@ -102,7 +103,7 @@ public class RegRanger {
 
     public void delete(){
         try (Connection con=DB.sql2o.open()){
-            String sql="DELETE FROM rangers WHERE id=:id";
+            String sql="DELETE FROM regrangers WHERE id=:id";
 
             con.createQuery(sql)
                     .addParameter("id",this.id)
@@ -110,20 +111,20 @@ public class RegRanger {
         }
     }
 
-    /*
-    public List<Sighting> getRangerSightings(){
+
+    public List<RegSighting> getRangerSightings(){
         try (Connection con=DB.sql2o.open()){
-            String sql="SELECT sighting_id FROM rangers_sightings WHERE ranger_id=:ranger_id";
+            String sql="SELECT regsighting_id FROM regrangers_sightings WHERE regranger_id=:regranger_id";
             List<Integer> sightings_ids=con.createQuery(sql)
-                    .addParameter("ranger_id",this.getId())
+                    .addParameter("regranger_id",this.getId())
                     .executeAndFetch(Integer.class);
-            List<Sighting> sightings=new ArrayList<Sighting>();
+            List<RegSighting> sightings=new ArrayList<RegSighting>();
 
             for(Integer sighting_id:sightings_ids){
-                String sightingsQuery="SELECT * FROM sightings WHERE id=:sighting_id";
-                Sighting sighting=con.createQuery(sightingsQuery)
-                        .addParameter("sighting_id",sighting_id)
-                        .executeAndFetchFirst(Sighting.class);
+                String sightingsQuery="SELECT * FROM regsightings WHERE id=:sighting_id";
+                RegSighting sighting=con.createQuery(sightingsQuery)
+                        .addParameter("regsighting_id",sighting_id)
+                        .executeAndFetchFirst(RegSighting.class);
                 sightings.add(sighting);
 
             }
@@ -136,5 +137,5 @@ public class RegRanger {
         }
 
     }
-            */
+
 }

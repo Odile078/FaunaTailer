@@ -49,7 +49,7 @@ public class RegAnimal implements DatabaseManagement{
         try (Connection con=DB.sql2o.open()){
 
 
-            String sql ="INSERT INTO animals (name,type) VALUES (:name,:type)";
+            String sql ="INSERT INTO reganimals (name,type) VALUES (:name,:type)";
 
             this.id=(int) con.createQuery(sql,true)
                     .addParameter("name",this.name)
@@ -61,7 +61,7 @@ public class RegAnimal implements DatabaseManagement{
     }
     public static RegAnimal find(int id){
         try (Connection con=DB.sql2o.open()){
-            String sql= "SELECT * FROM animals WHERE id=:id";
+            String sql= "SELECT * FROM reganimals WHERE id=:id";
             RegAnimal animal=  con.createQuery(sql)
                     .addParameter("id",id)
                     .throwOnMappingFailure(false)
@@ -73,7 +73,7 @@ public class RegAnimal implements DatabaseManagement{
     }
     public static List<RegAnimal> all(){
         try (Connection con=DB.sql2o.open()) {
-            String sql ="SELECT * FROM animals";
+            String sql ="SELECT * FROM reganimals";
             return con.createQuery(sql)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(RegAnimal.class);
@@ -89,7 +89,7 @@ public class RegAnimal implements DatabaseManagement{
                 if (health.equals("") || age.equals("")) {
                     throw new IllegalArgumentException("All fields must be filled");
                 }
-                String sql = "UPDATE animals SET type=:type,health=:health,age=:age WHERE id=:id";
+                String sql = "UPDATE reganimals SET type=:type,health=:health,age=:age WHERE id=:id";
                 con.createQuery(sql)
                         .addParameter("type", type)
                         .addParameter("health", health)
@@ -98,7 +98,7 @@ public class RegAnimal implements DatabaseManagement{
                         .executeUpdate();
             } else {
 
-                String sql = "UPDATE animals SET type=:type,health=:health,age=:age WHERE id=:id";
+                String sql = "UPDATE reganimals SET type=:type,health=:health,age=:age WHERE id=:id";
                 con.createQuery(sql)
                         .addParameter("type", type)
                         .addParameter("health", "")
@@ -131,7 +131,7 @@ public class RegAnimal implements DatabaseManagement{
 
     public void delete(){
         try (Connection con=DB.sql2o.open()){
-            String sql = "DELETE FROM animals WHERE id=:id";
+            String sql = "DELETE FROM reganimals WHERE id=:id";
             con.createQuery(sql)
                     .addParameter("id",this.id)
                     .executeUpdate();
@@ -140,7 +140,7 @@ public class RegAnimal implements DatabaseManagement{
     }
     public static void deleteAll() {
         try (Connection con = DB.sql2o.open()) {
-            String sql = "DELETE FROM animals";
+            String sql = "DELETE FROM reganimals";
             con.createQuery(sql)
                     .executeUpdate();
         } catch (Sql2oException ex) {
