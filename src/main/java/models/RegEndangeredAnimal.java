@@ -20,4 +20,12 @@ public class RegEndangeredAnimal extends RegAnimal{
         this.age=age;
 
     }
+
+    public String getHealth() {
+        return health;
+    }
+
+    public String getAge() {
+        return age;
+    }
 }
