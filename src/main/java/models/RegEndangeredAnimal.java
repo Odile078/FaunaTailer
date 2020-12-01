@@ -1,5 +1,7 @@
 package models;
 
+import org.sql2o.Connection;
+
 public class RegEndangeredAnimal extends RegAnimal{
     public String health;
     public String age;
@@ -28,4 +30,39 @@ public class RegEndangeredAnimal extends RegAnimal{
     public String getAge() {
         return age;
     }
+    @Override
+    public void save() {
+        if(this.name.equals("")||this.type.equals("")||this.health.equals("")||this.age.equals("")){
+            throw new IllegalArgumentException("Fill all the fields");
+        }
+        try (Connection con=DB.sql2o.open()){
+
+
+            String sql ="INSERT INTO animals (name,type,health,age) VALUES (:name,:type,:health,:age)";
+
+            this.id=(int) con.createQuery(sql,true)
+                    .addParameter("name",this.name)
+                    .addParameter("type",this.type)
+                    .addParameter("health",this.health)
+                    .addParameter("age",this.age)
+                    .executeUpdate()
+                    .getKey();
+        }
+
+    }
+    /*
+    public static EndangeredAnimal find(int id){
+        try (Connection con=DB.sql2o.open()){
+            String sql= "SELECT * FROM animals WHERE id=:id";
+            EndangeredAnimal animal=  con.createQuery(sql)
+                    .addParameter("id",id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(EndangeredAnimal.class);
+            return animal;
+
+        }
+
+    }
+
+*/
 }
