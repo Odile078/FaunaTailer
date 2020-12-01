@@ -2,7 +2,7 @@ package models;
 
 import org.sql2o.Connection;
 
-public class RegEndangeredAnimal extends RegAnimal{
+public class RegEndangeredAnimal extends RegAnimal implements DatabaseManagement{
     public String health;
     public String age;
 
