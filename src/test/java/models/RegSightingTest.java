@@ -31,6 +31,7 @@ public class RegSightingTest {
         assertEquals(1, testRegSighting.getRegAnimal_id());
     }
 
+
     @Test
     public void allInstancesAreSaved() {
         RegSighting testRegSighting = new RegSighting(1, 1, 1);

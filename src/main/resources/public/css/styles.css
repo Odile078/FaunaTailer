@@ -7,7 +7,7 @@ body{
 }
 
 nav a{
-    font-size:1.6em;
+    font-size:1.5em;
     margin-right:30px;
 
 }
@@ -117,4 +117,22 @@ font-family: 'Peddana', serif;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
+}
+.bgt{
+font-size:37px;
+}
+.cardback{
+color: rgb(59, 21, 3);
+background: rgb(212, 179, 179);
+}
+.card-title{
+color: rgb(238, 109, 50);
+font-size:20px;
+font-family: 'Lobster', cursive;
+
+}
+.s-title{
+color: rgb(238, 109, 50);
+font-size:20px;
+font-family: 'Lobster', cursive;
 }

@@ -34,7 +34,7 @@ public class App {
             return new ModelAndView(model,"rangerform.hbs");
         },new HandlebarsTemplateEngine());
 
-        post("/create/ranger/new",(request, response) -> {
+        /*post("/create/ranger/new",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
             String name=request.queryParams("name");
             String badge_id=request.queryParams("badge");
@@ -42,7 +42,20 @@ public class App {
             RegRanger ranger=new RegRanger(name,badge_id,phone_number);
             ranger.save();
             return new ModelAndView(model,"rangerform.hbs");
+        },new HandlebarsTemplateEngine());*/
+
+        post("/create/ranger/new",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            String name=request.queryParams("name");
+            String badge_id=request.queryParams("badge");
+            String phone_number=request.queryParams("phone");
+            RegRanger ranger=new RegRanger(name,badge_id,phone_number);
+            ranger.save();
+            request.session().attribute("item", name);
+            model.put("item", request.session().attribute("item"));
+            return new ModelAndView(model,"rangersuccess.hbs");
         },new HandlebarsTemplateEngine());
+
         get("/view/rangers",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
             model.put("rangers",RegRanger.all());

@@ -39,7 +39,7 @@ public class RegSighting {
         return reganimal_id;
     }
 
-    public Timestamp getRegTime() {
+    public Timestamp getTime() {
         return registered;
     }
 
