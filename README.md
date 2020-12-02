@@ -11,11 +11,10 @@ This is a Java program that  allows rangers to register and report about animals
 ## Demonstration
 
 
-
 ## Installation / Setup instruction
 * Open Terminal {Ctrl+Alt+T}
 
-* git clone ```https://github.com/Odile078/FaunaTailer.git```
+* git clone  ```https://github.com/Odile078/FaunaTailer.git```
 
 * cd FaunaTailer
 
