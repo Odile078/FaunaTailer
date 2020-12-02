@@ -8,7 +8,9 @@ This is a Java program that  allows rangers to register and report about animals
 ## Author
  Odile Uwimpuhwe
 
-## Demonstration
+## Live Site
+
+(https://faunatailing.herokuapp.com)
 
 
 ## Installation / Setup instruction
