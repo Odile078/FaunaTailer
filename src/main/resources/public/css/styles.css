@@ -110,7 +110,9 @@ height:600px;
 color:black;
 font-family: 'Peddana', serif;
 }
-
+.ltext{
+font-size:24px;
+}
 .selector{
   width: 100%;
   padding: 12px;

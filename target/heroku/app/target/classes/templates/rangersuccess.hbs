@@ -1,0 +1,59 @@
+{{#partial "content"}}
+
+    <div class="container">
+        <div class="jumbotron jumbotron1">
+            <div class="row">
+                <div class="col-md-4 ranger">
+
+                </div>
+                <div class="col-md-6">
+                    <form action="/create/ranger/new" method="post">
+                        <h1 class="text">Register Ranger</h1>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control " id="name" name="name"  required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="text" class="form-control form-control-lg" id="phone" name="phone"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="badge">Badge Number</label>
+                                    <input type="text" class="form-control " id="badge" name="badge"required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info "> Register </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="success jumbotron">
+
+            <h3>Ranger <br>  <span class="s-title">{{ item }} </span> <br> Has been created successfully <br>{{name}}</h3>
+
+            <a class="btn btn-primary" href="/view/rangers">View Rangers</a>
+            <a class="btn btn-primary" href="/view/locations">View Location</a>
+            <a class="btn btn-primary" href="/view/animals">View Animal</a>
+            <a class="btn btn-primary" href="/view/animals">View Sighting</a>
+        </div>
+    </div>
+{{/partial}}
+{{> layout.hbs}}

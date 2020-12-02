@@ -76,6 +76,9 @@ public class RegEndangeredAnimalTest {
         assertEquals(testRegEndangeredAnimal.getAge(), savedEndangeredAnimal.getAge());
     }
 
+
+
+
     @Test
     public void deleteById() {
         RegEndangeredAnimal testRegEndangeredAnimal = new RegEndangeredAnimal("Monkey", "endangered", "healthy", "newborn");

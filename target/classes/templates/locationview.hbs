@@ -1,0 +1,75 @@
+{{#partial "content"}}
+
+
+
+    <div class="container">
+        <div class="jumbotron jumbotron1">
+            <div class="row">
+
+                    {{#if locations}}
+                        {{#each locations as |l|}}
+                        <div class="col-md-4">
+                            <div class="">
+                                <p class="text" id={{l.id}}>{{l.name}}</p><br>
+                                <a href="/view/location/sightings/{{l.id}}"><button class="btn btn-info btn-md">View
+                                    Sightings</button></a><br>
+
+                            </div>
+                            <br>
+                        </div>
+                        {{/each}}
+
+                    {{else}}
+                        <p class="text s-title">There are no registered locations, register here <a href="/create/location">here</a></p>
+                    {{/if}}
+
+            </div>
+                {{#if sightings}}
+                    <div class="row">
+                <div class="col-md-10">
+                    <div class="card text-white cardback">
+                        <div class="card-body">
+                            <h1 class="card-title s-title">Sightings</h1>
+
+                            <div class="col-md-4 cardback">
+                                <h3 class="s-title">Time</h3>
+
+                                {{#each sightings as |s|}}
+                                    <li class="card-text ">{{s.time}}</li>
+                                {{/each}}
+
+                            </div>
+                            <div class="col-md-4 cardback">
+                                <h3 class="s-title">Animal</h3>
+
+                                {{#each animals as |a|}}
+                                    <li class="card-text ">{{a}}</li>
+                                {{/each}}
+
+                            </div>
+                            <div class="col-md-4 cardback">
+                                <h3 class="s-title">Type</h3>
+
+                                {{#each types as |t|}}
+                                    <li class="card-text ">{{t}}</li>
+                                {{/each}}
+
+                            </div>
+
+                        </div>
+                    </div>
+                {{else}}
+
+                 <p class=" s-title">There are no registered sighting for this ranger.</p>
+
+                {{/if}}
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+{{/partial}}
+{{> layout.hbs}}

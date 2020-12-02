@@ -1,0 +1,37 @@
+{{#partial "content"}}
+
+
+        <div class="container">
+            <div class="jumbotron jumbotron1">
+                <h1>Sightings</h1>
+                <div class="row">
+
+                    {{#if sightings}}
+                    <div class="col-md-4 cardback">
+                        <h3 class="s-title">Time</h3>
+
+                        {{#each sightings as |s|}}
+                            <h3 class="text">{{s.time}}</h3>
+                        {{/each}}
+
+                    </div>
+                    <div class="col-md-6 cardback">
+                        <h3 class="s-title">Animal</h3>
+
+                        {{#each animals as |a|}}
+                            <h3>{{a}}</h3>
+                        {{/each}}
+
+                    </div>
+                    {{else}}
+                        <h1>There are no registered sightings, register here <a href="/create/sighting">here</a> </h1>
+
+                    {{/if}}
+                </div>
+            </div>
+
+        </div>
+
+
+{{/partial}}
+{{> layout.hbs}}

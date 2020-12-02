@@ -45,6 +45,18 @@ public class RegAnimalTest {
             testRegAnimal.save();
         }
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void Animal_throwsExceptionIfTypeIsEndangeredCanNotBeEmpty(){
+        RegAnimal testRegAnimal = new RegAnimal("","safe");
+        if(testRegAnimal.type.equals("endangered")){
+
+        }
+
+        if(testRegAnimal.name.equals("")||testRegAnimal.type.equals("")||testRegAnimal.name.equals(null)||testRegAnimal.type.equals(null)){
+            testRegAnimal.save();
+        }
+    }
+
 
     @Test
     public void save_assignsIdToObject() {
@@ -53,6 +65,7 @@ public class RegAnimalTest {
         RegAnimal savedRegAnimal = RegAnimal.all().get(0);
         assertEquals(testRegAnimal.getId(), savedRegAnimal.getId());
     }
+
 
     @Test
     public void save_assignsNameToObjectAndCanNotBeEmpty() {
@@ -68,6 +81,7 @@ public class RegAnimalTest {
         testRegAnimal.save();
         assertFalse(RegAnimal.all().get(0).equals(testRegAnimal));
     }
+
 
     @Test
     public void ensureEntryIsUpdatedCorrectlyAndNonCanBeEmpty() {

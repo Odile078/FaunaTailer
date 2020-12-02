@@ -2,6 +2,8 @@ package models;
 
 import org.sql2o.Connection;
 
+import java.util.Objects;
+
 public class RegEndangeredAnimal extends RegAnimal implements DatabaseManagement{
     public String health;
     public String age;
@@ -50,19 +52,32 @@ public class RegEndangeredAnimal extends RegAnimal implements DatabaseManagement
         }
 
     }
-    /*
-    public static EndangeredAnimal find(int id){
+
+    public static RegEndangeredAnimal find(int id){
         try (Connection con=DB.sql2o.open()){
-            String sql= "SELECT * FROM animals WHERE id=:id";
-            EndangeredAnimal animal=  con.createQuery(sql)
+            String sql= "SELECT * FROM reganimals WHERE id=:id";
+            RegEndangeredAnimal animal=  con.createQuery(sql)
                     .addParameter("id",id)
                     .throwOnMappingFailure(false)
-                    .executeAndFetchFirst(EndangeredAnimal.class);
+                    .executeAndFetchFirst(RegEndangeredAnimal.class);
             return animal;
 
         }
 
     }
 
-*/
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        RegEndangeredAnimal that = (RegEndangeredAnimal) o;
+        return Objects.equals(health, that.health) &&
+                Objects.equals(age, that.age);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), health, age);
+    }
 }
