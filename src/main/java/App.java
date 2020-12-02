@@ -34,15 +34,7 @@ public class App {
             return new ModelAndView(model,"rangerform.hbs");
         },new HandlebarsTemplateEngine());
 
-        /*post("/create/ranger/new",(request, response) -> {
-            Map<String,Object> model=new HashMap<String, Object>();
-            String name=request.queryParams("name");
-            String badge_id=request.queryParams("badge");
-            String phone_number=request.queryParams("phone");
-            RegRanger ranger=new RegRanger(name,badge_id,phone_number);
-            ranger.save();
-            return new ModelAndView(model,"rangerform.hbs");
-        },new HandlebarsTemplateEngine());*/
+
 
         post("/create/ranger/new",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
@@ -91,6 +83,7 @@ public class App {
             return new ModelAndView(model,"locationform.hbs");
         },new HandlebarsTemplateEngine());
 
+
         post("/create/location/new",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
             String name=request.queryParams("name");
@@ -101,8 +94,13 @@ public class App {
                 System.out.println(e);
             }
 
-            return new ModelAndView(model,"locationform.hbs");
+            request.session().attribute("item", name);
+            model.put("item", request.session().attribute("item"));
+
+            return new ModelAndView(model,"locationsuccess.hbs");
         },new HandlebarsTemplateEngine());
+
+
         get("/view/locations",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
             model.put("locations",RegLocation.all());
@@ -136,7 +134,7 @@ public class App {
             return new ModelAndView(model,"animalform.hbs");
         },new HandlebarsTemplateEngine());
 
-        post("/create/animal/new",(request, response) -> {
+        /*post("/create/animal/new",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
             String type=request.queryParams("type");
             System.out.println(type);
@@ -156,6 +154,31 @@ public class App {
             }
 
             return new ModelAndView(model,"animalform.hbs");
+        },new HandlebarsTemplateEngine());*/
+
+        post("/create/animal/new",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            String type=request.queryParams("type");
+            System.out.println(type);
+            String health=request.queryParams("health");
+            System.out.println(health);
+            String age=request.queryParams("age");
+            System.out.println(age);
+            String name=request.queryParams("name");
+            System.out.println(name);
+            if(type.equals(RegEndangeredAnimal.ANIMAL_TYPE)){
+                RegEndangeredAnimal endangered=new RegEndangeredAnimal(name,RegEndangeredAnimal.ANIMAL_TYPE,health,age);
+                endangered.save();
+            }
+            else {
+                RegAnimal animal=new RegAnimal(name,RegAnimal.ANIMAL_TYPE);
+                animal.save();
+            }
+
+            request.session().attribute("item", name);
+            model.put("item", request.session().attribute("item"));
+
+            return new ModelAndView(model,"animalsuccess.hbs");
         },new HandlebarsTemplateEngine());
 
 
@@ -200,7 +223,10 @@ public class App {
 
             RegSighting sighting=new RegSighting(location_id,ranger_id,animal_id);
             sighting.save();
-            return new ModelAndView(model,"sightingform.hbs");
+
+            request.session().attribute("item", location_id);
+            model.put("item", request.session().attribute("item"));
+            return new ModelAndView(model,"sightingsuccess.hbs");
         },new HandlebarsTemplateEngine());
 
         get("/view/sightings",(request, response) -> {

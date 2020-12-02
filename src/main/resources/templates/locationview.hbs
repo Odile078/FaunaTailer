@@ -20,13 +20,13 @@
                         {{/each}}
 
                     {{else}}
-                        <p class="text display-4">There are no locations! Create some <a href="/create/location">here</a></p>
+                        <p class="text s-title">There are no registered locations, register here <a href="/create/location">here</a></p>
                     {{/if}}
 
             </div>
                 {{#if sightings}}
                     <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="card text-white cardback">
                         <div class="card-body">
                             <h1 class="card-title s-title">Sightings</h1>
@@ -59,7 +59,8 @@
                         </div>
                     </div>
                 {{else}}
-                    <h3>No Sightings in this location</h3>
+
+                 <p class=" s-title">There are no registered sighting for this ranger.</p>
 
                 {{/if}}
                 </div>

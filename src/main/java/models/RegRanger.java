@@ -121,7 +121,7 @@ public class RegRanger {
             List<RegSighting> sightings=new ArrayList<RegSighting>();
 
             for(Integer sighting_id:sightings_ids){
-                String sightingsQuery="SELECT * FROM regsightings WHERE id=:sighting_id";
+                String sightingsQuery="SELECT * FROM regsightings WHERE id=:regsighting_id";
                 RegSighting sighting=con.createQuery(sightingsQuery)
                         .addParameter("regsighting_id",sighting_id)
                         .executeAndFetchFirst(RegSighting.class);

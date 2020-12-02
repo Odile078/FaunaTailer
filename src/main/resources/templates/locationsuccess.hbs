@@ -1,0 +1,46 @@
+{{#partial "content"}}
+
+    <div class="container">
+        <div class="jumbotron jumbotron1">
+            <div class="row">
+                <div class="col-md-4 location">
+
+                </div>
+                <div class="col-md-6">
+                    <form action="/create/location/new" method="post">
+                        <h3 class="text bgt">You are a ranger and you just saw an animal, tell us it's location</h3>
+
+                        <div class="form-group">
+                            <label for="name">Location Name</label>
+                            <input type="text" class="form-control" id="name" name="name"  required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info "> Register </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="success jumbotron">
+
+            <h3>Location<br>  <span class="s-title">{{ item }} </span> <br> Has been created successfully <br>{{name}}</h3>
+
+            <a class="btn btn-primary" href="/view/rangers">View Rangers</a>
+            <a class="btn btn-primary" href="/view/locations">View Location</a>
+            <a class="btn btn-primary" href="/view/animals">View Animal</a>
+            <a class="btn btn-primary" href="/view/animals">View Sighting</a>
+        </div>
+    </div>
+{{/partial}}
+{{> layout.hbs}}

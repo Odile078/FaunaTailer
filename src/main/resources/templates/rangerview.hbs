@@ -7,23 +7,29 @@
                 <div class="col-md-4">
                     {{#if rangers}}
                         {{#each rangers as |r|}}
+                        <div class="col-md-4">
                             <div class="entries">
                                 <p class="text" id={{r.id}}>{{r.name}}</p><br>
                                 <a href="/view/ranger/sightings/{{r.id}}"><button class="btn btn-info btn-md">View
-                                    Sightings</button></a>
+                                    Sightings</button></a><br>
 
                             </div>
                             <br>
+                        </div>
                         {{/each}}
 
                     {{else}}
-                        <p class="text display-4">There are no rangers! Create some <a href="/create/ranger">here</a></p>
+                        <p class="text s-title">There are no registered rangers, register here <a href="/create/ranger">here</a></p>
                     {{/if}}
 
+
                 </div>
-                <div class="col-md-6">
+            </div>
+
                     {{#if sightings}}
-                        <div class="card text-white bg-success">
+                    <div class="row">
+                    <div class="col-md-10">
+                        <div class="card text-white cardback">
                             <div class="card-body">
                                 <h1 class="card-title s-title">Sightings</h1>
                                 <hr>
@@ -54,9 +60,10 @@
 
                             </div>
                         </div>
+                    {{else}}
+                        <p class=" s-title">There are no registered sighting for this ranger.</p>
 
                     {{/if}}
-
 
                 </div>
             </div>

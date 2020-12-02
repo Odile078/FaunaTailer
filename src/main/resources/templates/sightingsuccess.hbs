@@ -1,4 +1,5 @@
 {{#partial "content"}}
+
     <div class="container">
         <div class="jumbotron jumbotron1">
             <div class="row">
@@ -14,7 +15,7 @@
                                     <label  for="health">Ranger</label>
                                 </div>
                                 <div class="form-group">
-                                    <select class="selector" id="ranger" name="ranger" required>
+                                    <select class="selector" id="ranger" name="ranger">
                                         <option selected>Choose the ranger</option>
                                         {{#if rangers}}
 
@@ -29,7 +30,7 @@
                                     <label  for="health">Animal</label>
                                 </div>
                                 <div class="form-group">
-                                    <select class="selector" id="animal" name="animal" required>
+                                    <select class="selector" id="animal" name="animal">
                                         <option selected>Choose the animal</option>
                                         {{#if animals}}
 
@@ -45,7 +46,7 @@
                                     <label  for="health">Locatioin</label>
                                 </div>
                                 <div class="form-group">
-                                    <select class="selector" id="location" name="location" required>
+                                    <select class="selector" id="location" name="location">
                                         <option selected>Choose the location</option>
                                         {{#if locations}}
 
@@ -78,8 +79,19 @@
             </div>
         </div>
 
+
+
+
+
+        <div class="success jumbotron">
+
+            <h3>Sighting has been created successfully <br></h3>
+
+            <a class="btn btn-primary" href="/view/rangers">View Rangers</a>
+            <a class="btn btn-primary" href="/view/locations">View Location</a>
+            <a class="btn btn-primary" href="/view/animals">View Animal</a>
+            <a class="btn btn-primary" href="/view/animals">View Sighting</a>
+        </div>
     </div>
-
-
 {{/partial}}
 {{> layout.hbs}}
