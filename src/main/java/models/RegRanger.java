@@ -114,7 +114,7 @@ public class RegRanger {
 
     public List<RegSighting> getRangerSightings(){
         try (Connection con=DB.sql2o.open()){
-            String sql="SELECT regsighting_id FROM regrangers_sightings WHERE regranger_id=:regranger_id";
+            String sql="SELECT regsighting_id FROM regrangers_regsightings WHERE regranger_id=:regranger_id";
             List<Integer> sightings_ids=con.createQuery(sql)
                     .addParameter("regranger_id",this.getId())
                     .executeAndFetch(Integer.class);

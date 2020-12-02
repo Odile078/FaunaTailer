@@ -70,7 +70,7 @@ public class RegLocation {
 
     public List<RegSighting> getLocationSightings(){
         try (Connection con=DB.sql2o.open()){
-            String sql="SELECT regsighting_id FROM reglocations_sightings WHERE reglocation_id=:reglocation_id";
+            String sql="SELECT regsighting_id FROM reglocations_regsightings WHERE reglocation_id=:reglocation_id";
             List<Integer> sightings_ids=con.createQuery(sql)
                     .addParameter("reglocation_id",this.getId())
                     .executeAndFetch(Integer.class);
